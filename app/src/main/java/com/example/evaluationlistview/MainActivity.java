@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -30,6 +31,12 @@ public class MainActivity extends ListActivity {
     };
 
     String[] products = {
+            "Lait",
+            "Tele",
+            "Orange",
+            "Banana",
+            "Ananas",
+            "Cougette",
             "Lait",
             "Tele",
             "Orange",
@@ -61,9 +68,28 @@ public class MainActivity extends ListActivity {
             super(context, resource, textViewResourceId, objects);
         }
 
+        // avoid cycle rotate on list when many items depasse screen
+        @Override
+        public int getItemViewType(int position) {
+            return position;
+        }
+
+        // avoid cycle rotate on list when many items depasse screen
+        @Override
+        public int getViewTypeCount() {
+            return getCount();
+        }
+
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+            // avoid cycle rotate on list when many items depasse screen
+            if (convertView == null) {
+                LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                convertView = layoutInflater.inflate(R.layout.row, parent, false);
+            }
+
             final View lineView = super.getView(position, convertView, parent);
 
             // register traitement on onClick event of each line
