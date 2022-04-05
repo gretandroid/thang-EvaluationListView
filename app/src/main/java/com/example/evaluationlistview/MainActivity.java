@@ -37,12 +37,12 @@ public class MainActivity extends ListActivity {
             "Banana",
             "Ananas",
             "Cougette",
-            "Lait",
-            "Tele",
-            "Orange",
-            "Banana",
-            "Ananas",
-            "Cougette"
+            "Laits",
+            "Teles",
+            "Oranges",
+            "Bananas",
+            "Ananass",
+            "Cougettes"
 
     };
      int[] starIds = {
